@@ -1,0 +1,22 @@
+[project]
+name = "cbk_exchange_rate"
+version = "0.1.0"  # Or fetch dynamically if needed
+description = "Updates Exchange Rates from CBK"
+authors = [
+    { name = "William Luke", email = "william@switchedon.world" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests",
+    
+]
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["cbk_exchange_rate*"]
+

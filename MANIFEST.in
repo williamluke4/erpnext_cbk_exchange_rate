@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include cbk_exchange_rate *.css
+recursive-include cbk_exchange_rate *.csv
+recursive-include cbk_exchange_rate *.html
+recursive-include cbk_exchange_rate *.ico
+recursive-include cbk_exchange_rate *.js
+recursive-include cbk_exchange_rate *.json
+recursive-include cbk_exchange_rate *.md
+recursive-include cbk_exchange_rate *.png
+recursive-include cbk_exchange_rate *.py
+recursive-include cbk_exchange_rate *.svg
+recursive-include cbk_exchange_rate *.txt
+recursive-exclude cbk_exchange_rate *.pyc
