@@ -26,6 +26,6 @@ def get_latest_usd_rate():
     if row[1].strip().upper() != "US DOLLAR":
         raise Exception(f"Unexpected currency: {row[1]}")
     date_str, _currency, rate = row
-    date = datetime.strptime(date_str.strip(), '%d/%m/%Y')
+    date = datetime.strptime(date_str.strip(), '%d/%m/%Y').date();
     rate = float(rate.strip())
     return date, rate
