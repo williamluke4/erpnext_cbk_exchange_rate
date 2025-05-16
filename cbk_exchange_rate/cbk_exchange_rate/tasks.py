@@ -1,7 +1,7 @@
 import csv, io, datetime, requests, frappe
 from frappe.utils import getdate
 from cbk_exchange_rate.cbk_exchange_rate.fetch import get_latest_usd_rate
-
+from cbk_exchange_rate.cbk_exchange_rate.logger import logger
 def update_usd_rate():
     """Fetch and save the latest USD rate if it's for today and not already present."""
     today_date = getdate()
@@ -11,7 +11,7 @@ def update_usd_rate():
         "Currency Exchange",
         {"from_currency": "USD", "to_currency": "KES", "date": today_date},
     ):
-        frappe.logger().info(f"Rate for {today_date} already exists. Skipping update.")
+        logger.info(f"Rate for {today_date} already exists. Skipping update.")
         return
 
     # Fetch the latest rate if today's rate doesn't exist
@@ -21,7 +21,7 @@ def update_usd_rate():
     if rate_date == today_date:
         save_usd_rate(rate_date, rate)
     else:
-        frappe.logger().info(
+        logger.info(
             f"Fetched rate is for {rate_date}, not today ({today_date}). Skipping save."
         )
 
@@ -43,5 +43,6 @@ def save_usd_rate(rate_date: datetime.date, rate: float):
             }
         )
         doc.insert(ignore_permissions=True)
-        frappe.logger().info(f"CBK rate saved: {rate_date} 1 USD = {rate} KES")
-
+        logger.info(f"CBK rate saved: {rate_date} 1 USD = {rate} KES")
+    else:
+        logger.info(f"Rate for {rate_date} already exists. Skipping save.")
