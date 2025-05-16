@@ -4,7 +4,7 @@ from cbk_exchange_rate.cbk_exchange_rate.fetch import get_latest_usd_rate
 from cbk_exchange_rate.cbk_exchange_rate.logger import logger
 def update_usd_rate():
     """Fetch and save the latest USD rate if it's for today and not already present."""
-    today_date = getdate()
+    today_date = getdate().date()
 
     # Check if rate for today already exists
     if frappe.db.exists(
